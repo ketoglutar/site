@@ -16,9 +16,49 @@ npm run build
 npm run preview
 ```
 
+## Публикация на GitHub Pages
+
+Проект уже подготовлен для репозитория `ketoglutar/site`. При сборке в GitHub
+Actions Vite автоматически использует базовый путь `/site/`, поэтому видео,
+постеры, портрет и JS/CSS корректно открываются по адресу:
+
+`https://ketoglutar.github.io/site/`
+
+Первичная публикация:
+
+1. В GitHub откройте `Settings → Pages`.
+2. В разделе `Build and deployment` выберите `Source: GitHub Actions`.
+3. Отправьте файлы в ветку `main`:
+
+```powershell
+git add .
+git commit -m "Prepare MATVIX portfolio for GitHub Pages"
+git push -u origin main
+```
+
+Workflow `.github/workflows/deploy-pages.yml` автоматически выполнит
+`npm ci`, проверку TypeScript, production-сборку и публикацию папки `dist`.
+Последующие push в `main` также будут обновлять сайт автоматически. Ручной
+запуск доступен во вкладке `Actions` через `Run workflow`.
+
+Локальная проверка обычной сборки:
+
+```powershell
+npm run build
+npm run preview
+```
+
+Проверка сборки с тем же базовым путём, что и на GitHub Pages:
+
+```powershell
+$env:VITE_BASE_PATH = "/site/"
+npm run build
+Remove-Item Env:VITE_BASE_PATH
+```
+
 ## Локальная админка
 
-Кнопка «Админка» позволяет добавлять и удалять ролики без изменения кода. Файлы
+Кнопка «Панель» позволяет добавлять и удалять ролики без изменения кода. Файлы
 сохраняются в IndexedDB текущего браузера и сразу появляются в галереях. Это
 локальная библиотека: загрузка на одном устройстве не изменяет сайт у других
 посетителей.

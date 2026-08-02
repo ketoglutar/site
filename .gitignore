@@ -1,0 +1,16 @@
+node_modules
+.node_modules-pnpm-backup
+dist
+.vite
+.qa
+*.log
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+Portfolio.zip
+Particles.mp4
+*.docx
+.env
+.env.*
+!.env.example
+.DS_Store
