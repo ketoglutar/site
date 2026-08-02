@@ -1,0 +1,7 @@
+node_modules
+.node_modules-pnpm-backup
+dist
+.vite
+.qa
+*.log
+.DS_Store
