@@ -939,36 +939,39 @@ input:focus-visible {
   padding: 110px var(--page);
   text-align: center;
   background:
-    radial-gradient(circle at 18% 16%, rgba(161, 236, 254, 0.9), transparent 25%),
-    radial-gradient(circle at 82% 22%, rgba(67, 118, 185, 0.9), transparent 32%),
-    radial-gradient(circle at 56% 88%, rgba(20, 56, 106, 0.96), transparent 45%),
-    linear-gradient(135deg, #89bff6, #226cb7 47%, #14386a);
+    radial-gradient(ellipse 72% 68% at 5% 4%, rgba(161, 236, 254, 0.78), transparent 72%),
+    radial-gradient(ellipse 68% 64% at 96% 8%, rgba(67, 118, 185, 0.72), transparent 74%),
+    radial-gradient(ellipse 82% 72% at 54% 108%, rgba(20, 56, 106, 0.9), transparent 76%),
+    linear-gradient(132deg, #78b8ee 0%, #397fc0 34%, #226cb7 58%, #14386a 100%);
+  isolation: isolate;
 }
 
 .grain-section::before {
   position: absolute;
-  inset: 0;
+  z-index: 0;
+  inset: -8%;
   content: "";
-  opacity: 0.55;
+  opacity: 0.7;
   background:
-    conic-gradient(from 120deg at 54% 50%, transparent, rgba(255, 255, 255, 0.18), transparent 38%),
-    linear-gradient(115deg, rgba(255, 255, 255, 0.16), transparent 32%, rgba(6, 14, 30, 0.3));
-  filter: blur(38px);
+    radial-gradient(ellipse 52% 66% at 30% 35%, rgba(255, 255, 255, 0.16), transparent 70%),
+    conic-gradient(from 118deg at 56% 48%, transparent 0 12%, rgba(161, 236, 254, 0.13) 22%, transparent 36% 68%, rgba(6, 14, 30, 0.18) 82%, transparent 100%);
   animation: grain-drift 14s ease-in-out infinite alternate;
 }
 
 .grain-section__noise {
   position: absolute;
+  z-index: 1;
   inset: 0;
-  opacity: 0.12;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.9'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg width='256' height='256' viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23g)' opacity='.72'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 192px 192px;
+  mix-blend-mode: soft-light;
 }
 
 @keyframes grain-drift {
   to {
-    opacity: 0.84;
-    transform: scale(1.12) translate3d(-2%, 2%, 0);
+    opacity: 0.82;
   }
 }
 
@@ -1282,6 +1285,10 @@ input:focus-visible {
 .contact-title__accent {
   display: block;
   max-width: 100%;
+  padding: 0.04em 0.04em 0.14em;
+  margin: -0.04em -0.04em -0.14em;
+  line-height: 1.02;
+  overflow: visible;
   white-space: nowrap;
 }
 
