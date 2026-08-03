@@ -388,18 +388,6 @@ function App() {
               },
             );
 
-            gsap.to(".hero__light-field", {
-              yPercent: 8,
-              scale: 1.08,
-              autoAlpha: 0.16,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: 1,
-              },
-            });
             gsap.to(".hero-copy", {
               yPercent: -22,
               autoAlpha: 0,
@@ -502,17 +490,17 @@ function App() {
               <LightPillar
                 bottomColor="#226CB7"
                 className="hero__light-pillar"
-                glowAmount={0.0033}
-                intensity={0.68}
+                glowAmount={0.00195}
+                intensity={0.72}
                 interactive={false}
                 mixBlendMode="screen"
-                noiseIntensity={0.25}
-                pillarHeight={0.52}
-                pillarRotation={-3}
-                pillarWidth={1.1}
+                noiseIntensity={0.5}
+                pillarHeight={0.4}
+                pillarRotation={22}
+                pillarWidth={1.45}
                 quality="high"
-                rotationSpeed={0.18}
-                topColor="#A1ECFE"
+                rotationSpeed={0.3}
+                topColor="#89BFF6"
               />
             </Suspense>
           </div>

@@ -450,32 +450,14 @@ input:focus-visible {
 .hero__light-field {
   position: absolute;
   z-index: 0;
-  inset: -12% 24%;
+  inset: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.82;
-  will-change: transform, opacity;
-}
-
-.hero__light-field::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    rgba(161, 236, 254, 0.12),
-    rgba(34, 108, 183, 0.05) 28%,
-    transparent 62%
-  );
-  mix-blend-mode: screen;
 }
 
 .hero__light-pillar {
-  opacity: 0.78;
-  filter: saturate(1.2) contrast(1.15);
-  transform: scale(0.96, 1.08);
-  transform-origin: center;
+  opacity: 1;
+  filter: none;
 }
 
 .hero__light-pillar canvas,
@@ -487,10 +469,14 @@ input:focus-visible {
 .hero__light-pillar--loading,
 .hero__light-field .light-pillar-fallback {
   color: transparent;
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(161, 236, 254, 0.4), transparent 9%),
-    linear-gradient(98deg, transparent 43%, rgba(34, 108, 183, 0.5) 48%, #a1ecfe 50%, rgba(34, 108, 183, 0.5) 52%, transparent 57%);
-  filter: blur(12px);
+  background: linear-gradient(
+    108deg,
+    transparent 43%,
+    rgba(34, 108, 183, 0.22) 47%,
+    #a1ecfe 49.6%,
+    rgba(67, 118, 185, 0.72) 50.4%,
+    transparent 55%
+  );
 }
 
 .hero-copy {
@@ -2000,15 +1986,6 @@ input:focus-visible {
 
   .hero__coordinates span:nth-child(2) {
     display: none;
-  }
-
-  .hero__light-field {
-    inset: -10% 8%;
-    opacity: 0.8;
-  }
-
-  .hero__light-pillar {
-    transform: scale(1, 1.12);
   }
 
   .portfolio-grid {
