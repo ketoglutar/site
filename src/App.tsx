@@ -488,19 +488,19 @@ function App() {
           <div className="hero__light-field" aria-hidden="true">
             <Suspense fallback={<div className="hero__light-pillar--loading" />}>
               <LightPillar
-                bottomColor="#226CB7"
+                bottomColor="#A1ECFE"
                 className="hero__light-pillar"
-                glowAmount={0.00195}
-                intensity={0.72}
+                glowAmount={0.002}
+                intensity={1}
                 interactive={false}
                 mixBlendMode="screen"
                 noiseIntensity={0.5}
-                pillarHeight={0.4}
-                pillarRotation={22}
-                pillarWidth={1.45}
+                pillarHeight={0.6}
+                pillarRotation={25}
+                pillarWidth={10}
                 quality="high"
-                rotationSpeed={0.3}
-                topColor="#89BFF6"
+                rotationSpeed={0.2}
+                topColor="#4376B9"
               />
             </Suspense>
           </div>
