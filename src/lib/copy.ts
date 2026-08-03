@@ -24,7 +24,7 @@ export const copy = {
       code: "MVX / 001",
     },
     reel: {
-      eyebrow: "Избранные работы · 2024—26",
+      eyebrow: "Избранные работы · 2025—2026",
       title: "Избранные работы",
       intro:
         "Девять проектов. В каждом темп, драматургия, звук и графика работают как единое целое.",
@@ -79,11 +79,6 @@ export const copy = {
       copied: "Email скопирован",
       paste: "Готово — можно вставить",
       note: "Отвечаю лично · обычно в течение дня",
-    },
-    transition: {
-      label: "01 / ПЕРЕХОД",
-      body: "От идеи — к ритму.",
-      ariaLabel: "Световой переход",
     },
     principle: {
       label: "02 / ПРИНЦИП",
@@ -162,7 +157,7 @@ export const copy = {
       code: "MVX / 001",
     },
     reel: {
-      eyebrow: "Selected work · 2024—26",
+      eyebrow: "Selected work · 2025—2026",
       title: "Selected work",
       intro:
         "Nine selected projects where pacing, narrative, sound and motion work as one.",
@@ -217,11 +212,6 @@ export const copy = {
       copied: "Email copied",
       paste: "Ready to paste",
       note: "I reply personally · usually within a day",
-    },
-    transition: {
-      label: "01 / TRANSITION",
-      body: "From idea to rhythm.",
-      ariaLabel: "Light transition",
     },
     principle: {
       label: "02 / PRINCIPLE",

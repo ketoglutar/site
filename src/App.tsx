@@ -25,17 +25,7 @@ import { readVideos, type StoredVideo } from "@/lib/video-store";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Atmosphere = lazy(() =>
-  import("@/components/Atmosphere").then((module) => ({
-    default: module.Atmosphere,
-  })),
-);
-
-const LightPillar = lazy(() =>
-  import("@/components/LightPillar").then((module) => ({
-    default: module.LightPillar,
-  })),
-);
+const LightPillar = lazy(() => import("@/components/LightPillar"));
 
 type PortfolioItem = OrbitItem & {
   note: string;
@@ -398,10 +388,10 @@ function App() {
               },
             );
 
-            gsap.to(".hero-sphere", {
-              yPercent: 24,
-              scale: 1.16,
-              autoAlpha: 0.08,
+            gsap.to(".hero__light-field", {
+              yPercent: 8,
+              scale: 1.08,
+              autoAlpha: 0.16,
               ease: "none",
               scrollTrigger: {
                 trigger: ".hero",
@@ -507,18 +497,25 @@ function App() {
 
       <main>
         <section className="hero" id="top" aria-labelledby="hero-title">
-          <ViewportVideo
-            aria-hidden="true"
-            className="hero__particle-film"
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            src={assetUrl("media/particles.mp4")}
-          />
-          <Suspense fallback={<div className="hero-sphere hero-sphere--loading" />}>
-            <Atmosphere />
-          </Suspense>
+          <div className="hero__light-field" aria-hidden="true">
+            <Suspense fallback={<div className="hero__light-pillar--loading" />}>
+              <LightPillar
+                bottomColor="#226CB7"
+                className="hero__light-pillar"
+                glowAmount={0.0033}
+                intensity={0.68}
+                interactive={false}
+                mixBlendMode="screen"
+                noiseIntensity={0.25}
+                pillarHeight={0.52}
+                pillarRotation={-3}
+                pillarWidth={1.1}
+                quality="high"
+                rotationSpeed={0.18}
+                topColor="#A1ECFE"
+              />
+            </Suspense>
+          </div>
 
           <div className="hero-copy">
             <span className="hero-copy__meta">
@@ -546,20 +543,7 @@ function App() {
           <div className="hero__coordinates" aria-hidden="true">
             <span>55.7558° N</span>
             <span>37.6173° E</span>
-            <span>2024—2026</span>
-          </div>
-        </section>
-
-        <section
-          className="rift-section"
-          aria-label={text.transition.ariaLabel}
-        >
-          <Suspense fallback={<div className="light-pillar light-pillar--loading" />}>
-            <LightPillar />
-          </Suspense>
-          <div className="rift-section__copy">
-            <span>{text.transition.label}</span>
-            <p>{text.transition.body}</p>
+            <span>2025—2026</span>
           </div>
         </section>
 

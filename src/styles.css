@@ -1,7 +1,8 @@
 :root {
   color: #fff;
   background: #060e1e;
-  font-family: "Articulat CF", "Manrope Variable", "Manrope", sans-serif;
+  font-family: "Manrope Variable", "Manrope", sans-serif;
+  font-optical-sizing: auto;
   font-synthesis: none;
   text-rendering: geometricPrecision;
   --ink: #060e1e;
@@ -431,9 +432,8 @@ input:focus-visible {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 77%, rgba(34, 108, 183, 0.22), transparent 36%),
-    linear-gradient(180deg, #040916 0%, var(--ink) 73%, #081a36 100%);
+  background: var(--ink);
+  isolation: isolate;
 }
 
 .hero::before {
@@ -443,68 +443,54 @@ input:focus-visible {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, rgba(6, 14, 30, 0.72), transparent 26%, transparent 74%, rgba(6, 14, 30, 0.72)),
-    linear-gradient(180deg, rgba(6, 14, 30, 0.34), transparent 48%, rgba(6, 14, 30, 0.04));
+    radial-gradient(ellipse at 50% 48%, transparent 0 26%, rgba(6, 14, 30, 0.08) 54%, rgba(6, 14, 30, 0.7) 100%),
+    linear-gradient(180deg, rgba(6, 14, 30, 0.24), transparent 46%, rgba(6, 14, 30, 0.32));
 }
 
-.hero__particle-film {
+.hero__light-field {
   position: absolute;
   z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.12;
-  filter: saturate(0) contrast(1.25) brightness(0.78);
-  mix-blend-mode: screen;
-  transform: translate3d(0, 12%, 0) scale(1.08);
-  transform-origin: 50% 50%;
-  will-change: transform;
-}
-
-.hero-sphere {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
+  inset: -12% 24%;
+  overflow: hidden;
   pointer-events: none;
+  opacity: 0.82;
   will-change: transform, opacity;
 }
 
-.hero-sphere.is-fallback {
-  background:
-    radial-gradient(ellipse 68% 42% at 50% 112%, rgba(161, 236, 254, 0.88) 0 1%, rgba(137, 191, 246, 0.54) 2%, rgba(34, 108, 183, 0.34) 14%, rgba(20, 56, 106, 0.16) 30%, transparent 46%);
-}
-
-.hero-sphere::after {
+.hero__light-field::after {
   position: absolute;
-  right: 7%;
-  bottom: -15%;
-  left: 7%;
-  height: 54%;
-  border-radius: 50%;
+  inset: 0;
+  pointer-events: none;
   content: "";
-  opacity: 0.82;
   background: radial-gradient(
-    ellipse at 50% 18%,
-    rgba(161, 236, 254, 0.26),
-    rgba(34, 108, 183, 0.11) 27%,
-    transparent 67%
+    ellipse at 50% 50%,
+    rgba(161, 236, 254, 0.12),
+    rgba(34, 108, 183, 0.05) 28%,
+    transparent 62%
   );
-  filter: blur(26px);
   mix-blend-mode: screen;
 }
 
-.hero-sphere canvas {
+.hero__light-pillar {
+  opacity: 0.78;
+  filter: saturate(1.2) contrast(1.15);
+  transform: scale(0.96, 1.08);
+  transform-origin: center;
+}
+
+.hero__light-pillar canvas,
+.hero__light-field .light-pillar-container canvas {
   width: 100%;
   height: 100%;
 }
 
-.hero-sphere--loading {
-  background: radial-gradient(
-    ellipse at 50% 80%,
-    rgba(137, 191, 246, 0.24),
-    transparent 47%
-  );
+.hero__light-pillar--loading,
+.hero__light-field .light-pillar-fallback {
+  color: transparent;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(161, 236, 254, 0.4), transparent 9%),
+    linear-gradient(98deg, transparent 43%, rgba(34, 108, 183, 0.5) 48%, #a1ecfe 50%, rgba(34, 108, 183, 0.5) 52%, transparent 57%);
+  filter: blur(12px);
 }
 
 .hero-copy {
@@ -616,89 +602,6 @@ input:focus-visible {
   color: rgba(255, 255, 255, 0.28);
   font-size: 8px;
   letter-spacing: 0.18em;
-}
-
-/* Light pillar */
-
-.rift-section {
-  position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, #07152b 0%, #040812 50%, #071326 100%);
-}
-
-.rift-section::before,
-.rift-section::after {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  bottom: 0;
-  width: 32%;
-  pointer-events: none;
-  content: "";
-}
-
-.rift-section::before {
-  left: 0;
-  background: linear-gradient(90deg, #050b17, transparent);
-}
-
-.rift-section::after {
-  right: 0;
-  background: linear-gradient(-90deg, #050b17, transparent);
-}
-
-.light-pillar {
-  position: absolute;
-  z-index: 1;
-  inset: -8% 0;
-  transform: rotate(17deg) scale(1.24);
-  transform-origin: center;
-  filter: saturate(1.08) contrast(1.08);
-}
-
-.light-pillar canvas {
-  width: 100%;
-  height: 100%;
-}
-
-.light-pillar--loading {
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(161, 236, 254, 0.42), transparent 10%),
-    linear-gradient(101deg, transparent 43%, rgba(34, 108, 183, 0.62) 49%, #a1ecfe 50%, rgba(34, 108, 183, 0.62) 51%, transparent 57%);
-  filter: blur(10px);
-}
-
-.light-pillar.is-fallback {
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(161, 236, 254, 0.5), transparent 9%),
-    linear-gradient(101deg, transparent 41%, rgba(34, 108, 183, 0.4) 47%, #a1ecfe 49.75%, #ffffff 50%, #a1ecfe 50.25%, rgba(34, 108, 183, 0.4) 53%, transparent 59%);
-  filter: blur(8px);
-}
-
-.rift-section__copy {
-  position: absolute;
-  z-index: 3;
-  right: var(--page);
-  bottom: 44px;
-  left: var(--page);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 8px;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-}
-
-.rift-section__copy p {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(18px, 2vw, 30px);
-  font-weight: 480;
-  letter-spacing: -0.04em;
-  text-transform: none;
 }
 
 /* Work */
@@ -1337,8 +1240,9 @@ input:focus-visible {
 .contact-section {
   position: relative;
   display: grid;
-  min-height: 92svh;
+  min-height: max(760px, 92svh);
   overflow: hidden;
+  padding: clamp(112px, 14vh, 156px) var(--page) clamp(74px, 9vh, 104px);
   place-items: center;
   text-align: center;
   background: var(--ink);
@@ -1367,38 +1271,48 @@ input:focus-visible {
 .contact-section__inner {
   position: relative;
   z-index: 2;
-  width: min(1080px, calc(100% - 34px));
+  width: min(1180px, 100%);
 }
 
 .contact-section h2 {
-  margin: 28px 0 48px;
-  font-size: clamp(72px, 12vw, 182px);
-  font-weight: 500;
-  line-height: 0.79;
-  letter-spacing: -0.09em;
+  display: grid;
+  max-width: 100%;
+  justify-items: center;
+  gap: clamp(3px, 0.65vw, 10px);
+  margin: clamp(25px, 4vh, 38px) auto clamp(38px, 6vh, 58px);
+  font-family: inherit;
+  font-weight: 520;
+  font-variation-settings: "wght" 520;
+  line-height: 0.92;
+  letter-spacing: -0.052em;
+  text-wrap: balance;
+}
+
+.contact-section h2 br {
+  display: none;
 }
 
 .contact-title__primary,
 .contact-title__accent {
-  display: inline-block;
+  display: block;
+  max-width: 100%;
   white-space: nowrap;
 }
 
 .contact-section h2 .contact-title__accent {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(161, 236, 254, 0.58);
+  color: var(--ice);
+  background: linear-gradient(92deg, var(--sky), var(--ice) 48%, var(--steel));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-section h2.contact-title--ru {
-  font-size: clamp(72px, 9.6vw, 146px);
-  line-height: 0.84;
-  letter-spacing: -0.075em;
+  font-size: clamp(60px, 8.25vw, 126px);
 }
 
 .contact-section h2.contact-title--en {
-  font-size: clamp(64px, 9.4vw, 142px);
-  line-height: 0.84;
-  letter-spacing: -0.075em;
+  font-size: clamp(56px, 7.35vw, 112px);
 }
 
 .contact-section__actions {
@@ -2088,19 +2002,13 @@ input:focus-visible {
     display: none;
   }
 
-  .rift-section {
-    min-height: 92svh;
+  .hero__light-field {
+    inset: -10% 8%;
+    opacity: 0.8;
   }
 
-  .light-pillar {
-    inset: -10% -42%;
-    transform: rotate(18deg) scale(1.2);
-  }
-
-  .rift-section__copy {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 13px;
+  .hero__light-pillar {
+    transform: scale(1, 1.12);
   }
 
   .portfolio-grid {
@@ -2207,12 +2115,16 @@ input:focus-visible {
   }
 
   .contact-section {
-    min-height: 82svh;
+    min-height: 720px;
+    padding: 108px var(--page) 72px;
   }
 
-  .contact-section h2 {
+  .contact-section h2.contact-title--ru,
+  .contact-section h2.contact-title--en {
     margin-block: 24px 38px;
-    font-size: clamp(62px, 18vw, 92px);
+    font-size: clamp(48px, 15vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.042em;
   }
 
   .contact-title__primary,
