@@ -376,10 +376,6 @@ input:focus-visible {
   background: #fff;
 }
 
-.nav-links__admin {
-  border: 1px solid rgba(161, 236, 254, 0.12) !important;
-}
-
 .nav-bursts {
   position: absolute;
   inset: 50%;
@@ -453,6 +449,15 @@ input:focus-visible {
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+}
+
+@media (min-width: 761px) {
+  .hero__light-field {
+    inset: 50% auto auto 50%;
+    width: max(100vw, 213.333svh);
+    height: max(100svh, 46.875vw);
+    transform: translate(-50%, -50%);
+  }
 }
 
 .hero__light-pillar {
@@ -776,7 +781,7 @@ input:focus-visible {
 }
 
 .approach-copy {
-  max-width: 760px;
+  max-width: 960px;
 }
 
 .approach-copy h2 {
@@ -788,6 +793,7 @@ input:focus-visible {
 }
 
 .approach-copy h2.approach-title--ru {
+  font-size: clamp(58px, 5.8vw, 94px);
   line-height: 0.9;
   letter-spacing: -0.052em;
 }
@@ -1960,10 +1966,6 @@ input:focus-visible {
     font-size: 8px;
   }
 
-  .nav-links__admin {
-    display: inline-flex;
-  }
-
   .language-switch button {
     padding-inline: 6px;
     font-size: 7px;
@@ -2029,6 +2031,10 @@ input:focus-visible {
 
   .approach-copy h2 {
     font-size: clamp(59px, 18vw, 88px);
+  }
+
+  .approach-copy h2.approach-title--ru {
+    font-size: clamp(52px, 15vw, 72px);
   }
 
   .approach-card {

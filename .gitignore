@@ -14,3 +14,6 @@ Portfolio.zip
 .env.*
 !.env.example
 .DS_Store
+
+# Local source archive; optimized web assets live in public/media/orbit.
+Доп. Видео.zip

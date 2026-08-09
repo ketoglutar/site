@@ -54,9 +54,9 @@ export const copy = {
     ],
     about: {
       eyebrow: "Как я работаю",
-      title: "Меньше шума.\nБольше смысла.",
+      title: "Чистый результат.\nБез лишнего шума.",
       body:
-        "Я выстраиваю темп, визуальный образ и звук вокруг задачи клиента — и убираю всё лишнее.",
+        "Управляю вниманием зрителя через ритм, графику и звук. Выжимаю максимум из каждого кадра.",
       facts: [
         ["01", "Погружаюсь в задачу"],
         ["02", "Выстраиваю драматургию"],
@@ -187,9 +187,9 @@ export const copy = {
     ],
     about: {
       eyebrow: "How I work",
-      title: "Less noise.\nMore meaning.",
+      title: "Clean results.\nNo unnecessary noise.",
       body:
-        "I shape rhythm, image and sound around the client's goal — then remove everything that gets in the way.",
+        "I guide viewer attention through rhythm, graphics and sound. I get the most out of every frame.",
       facts: [
         ["01", "Read the brief"],
         ["02", "Build the narrative"],

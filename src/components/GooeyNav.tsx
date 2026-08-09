@@ -6,7 +6,6 @@ type GooeyNavProps = {
   language: Language;
   labels: SiteCopy["nav"];
   onLanguageChange: (language: Language) => void;
-  onAdminOpen: () => void;
 };
 
 type Burst = {
@@ -20,7 +19,6 @@ export function GooeyNav({
   language,
   labels,
   onLanguageChange,
-  onAdminOpen,
 }: GooeyNavProps) {
   const [active, setActive] = useState("work");
   const [hidden, setHidden] = useState(false);
@@ -134,16 +132,6 @@ export function GooeyNav({
               ) : null}
             </button>
           ))}
-          <button
-            className="nav-links__admin"
-            onClick={() => {
-              triggerBurst();
-              onAdminOpen();
-            }}
-            type="button"
-          >
-            {labels.admin}
-          </button>
         </nav>
 
         <div

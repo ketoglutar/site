@@ -139,6 +139,86 @@ const PORTFOLIO_ASSETS = [
   },
 ] as const;
 
+const ORBIT_ASSETS = [
+  {
+    id: "extra-viral-reel",
+    src: assetUrl("media/orbit/viral-reel-extra.mp4"),
+    poster: assetUrl("media/orbit/viral-reel-extra.webp"),
+    title: "Viral Reel",
+    type: { ru: "Вертикальный монтаж", en: "Vertical Edit" },
+    note: {
+      ru: "Вертикальный ролик с плотным ритмом и точными визуальными акцентами.",
+      en: "A vertical edit driven by tight pacing and precise visual accents.",
+    },
+  },
+  {
+    id: "time-is-money",
+    src: assetUrl("media/orbit/time-is-money.mp4"),
+    poster: assetUrl("media/orbit/time-is-money.webp"),
+    title: "Time Is Money",
+    type: { ru: "Кинетическая типографика", en: "Kinetic Type" },
+    note: {
+      ru: "Типографический монтаж, где скорость и композиция усиливают основную мысль.",
+      en: "A typographic edit where speed and composition sharpen the central idea.",
+    },
+  },
+  {
+    id: "text-animation-9",
+    src: assetUrl("media/orbit/text-animation-9.mp4"),
+    poster: assetUrl("media/orbit/text-animation-9.webp"),
+    title: "Text Animation 9",
+    type: { ru: "Текстовая анимация", en: "Type Animation" },
+    note: {
+      ru: "Короткий эксперимент с пластикой букв, таймингом и сменой масштаба.",
+      en: "A short study in letterforms, timing and shifts in scale.",
+    },
+  },
+  {
+    id: "saas-animation-carousel",
+    src: assetUrl("media/orbit/saas-animation-carousel.mp4"),
+    poster: assetUrl("media/orbit/saas-animation-carousel.webp"),
+    title: "SaaS Animation Carousel",
+    type: { ru: "Продуктовый моушн", en: "Product Motion" },
+    note: {
+      ru: "Продуктовый интерфейс собран в ясную и ритмичную визуальную историю.",
+      en: "A product interface shaped into a clear, rhythmic visual story.",
+    },
+  },
+  {
+    id: "saas-border-beam",
+    src: assetUrl("media/orbit/saas-border-beam.mp4"),
+    poster: assetUrl("media/orbit/saas-border-beam.webp"),
+    title: "SaaS Border Beam",
+    type: { ru: "UI-анимация", en: "UI Motion" },
+    note: {
+      ru: "Акцентная интерфейсная анимация с контролируемым светом и движением.",
+      en: "A focused interface animation built with controlled light and motion.",
+    },
+  },
+  {
+    id: "saas-viral-money",
+    src: assetUrl("media/orbit/saas-viral-money.mp4"),
+    poster: assetUrl("media/orbit/saas-viral-money.webp"),
+    title: "SaaS Viral Money",
+    type: { ru: "Рекламный моушн", en: "Social Motion" },
+    note: {
+      ru: "Короткий рекламный моушн с быстрым хуком и чистой подачей продукта.",
+      en: "A short promotional piece with a fast hook and clean product framing.",
+    },
+  },
+  {
+    id: "swagg",
+    src: assetUrl("media/orbit/swagg.mp4"),
+    poster: assetUrl("media/orbit/swagg.webp"),
+    title: "SWAGG",
+    type: { ru: "Стиль-фреймы · Моушн", en: "Style Frames · Motion" },
+    note: {
+      ru: "Выразительный визуальный эксперимент, построенный на характере и ритме.",
+      en: "An expressive visual experiment built around attitude and rhythm.",
+    },
+  },
+] as const;
+
 function App() {
   const [language, setLanguage] = useState<Language>(() =>
     localStorage.getItem("matvix-language") === "en" ? "en" : "ru",
@@ -168,6 +248,12 @@ function App() {
 
   useEffect(() => {
     readVideos().then(setRecords).catch(() => setRecords([]));
+  }, []);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("admin") === "1") {
+      setAdminOpen(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -287,6 +373,20 @@ function App() {
 
     return [...uploads, ...builtIn];
   }, [language, records, uploadedUrlMap]);
+
+  const orbitItems = useMemo<PortfolioItem[]>(
+    () =>
+      ORBIT_ASSETS.map((asset, index) => ({
+        id: asset.id,
+        src: asset.src,
+        poster: asset.poster,
+        title: asset.title,
+        type: asset.type[language],
+        note: asset.note[language],
+        start: index * 0.72,
+      })),
+    [language],
+  );
 
   const handleIntroComplete = useCallback(() => setIntroComplete(true), []);
 
@@ -479,7 +579,6 @@ function App() {
       <GooeyNav
         labels={text.nav}
         language={language}
-        onAdminOpen={() => setAdminOpen(true)}
         onLanguageChange={setLanguage}
       />
 
@@ -529,8 +628,8 @@ function App() {
           </div>
 
           <div className="hero__coordinates" aria-hidden="true">
-            <span>55.7558° N</span>
-            <span>37.6173° E</span>
+            <span>34.0522° N</span>
+            <span>118.2437° W</span>
             <span>2025—2026</span>
           </div>
         </section>
@@ -649,9 +748,9 @@ function App() {
 
         <VideoOrbit
           copy={text.orbit}
-          items={portfolioItems}
+          items={orbitItems}
           onSelect={(item) =>
-            setSelectedVideo(portfolioItems.find((source) => source.id === item.id) ?? null)
+            setSelectedVideo(orbitItems.find((source) => source.id === item.id) ?? null)
           }
         />
 
