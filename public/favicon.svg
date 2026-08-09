@@ -5,15 +5,8 @@
       <stop offset="0.5" stop-color="#89BFF6"/>
       <stop offset="1" stop-color="#4376B9"/>
     </linearGradient>
-    <radialGradient id="surface" cx="0" cy="0" r="1" gradientTransform="translate(68 24) rotate(128) scale(88)">
-      <stop stop-color="#14386A"/>
-      <stop offset="0.58" stop-color="#0A1A34"/>
-      <stop offset="1" stop-color="#060E1E"/>
-    </radialGradient>
   </defs>
-  <rect width="100" height="100" rx="22" fill="url(#surface)"/>
-  <rect x="1.5" y="1.5" width="97" height="97" rx="20.5" fill="none" stroke="#A1ECFE" stroke-opacity="0.22" stroke-width="3"/>
-  <g transform="translate(12 12) scale(.76)">
+  <g transform="translate(5 5) scale(.9)">
     <path d="M50 0C54.2 33.2 66.8 45.8 100 50C66.8 54.2 54.2 66.8 50 100C45.8 66.8 33.2 54.2 0 50C33.2 45.8 45.8 33.2 50 0Z" fill="url(#star)"/>
   </g>
 </svg>
