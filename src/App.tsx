@@ -127,14 +127,14 @@ const PORTFOLIO_ASSETS = [
     },
   },
   {
-    id: "viral-reel",
-    src: assetUrl("media/portfolio/viral-reel.mp4"),
-    poster: assetUrl("media/portfolio/viral-reel.webp"),
-    title: "Viral Reel",
-    type: { ru: "Короткий формат", en: "Short-Form Edit" },
+    id: "saas-scout-1-4",
+    src: assetUrl("media/portfolio/saas-scout-1-4.mp4"),
+    poster: assetUrl("media/portfolio/saas-scout-1-4.webp"),
+    title: "SaaS Scout 1.4",
+    type: { ru: "Продуктовый моушн", en: "Product Motion" },
     note: {
-      ru: "Быстрый вертикальный монтаж, в котором каждый кадр подталкивает к следующему.",
-      en: "A fast vertical edit where every frame propels the next one.",
+      ru: "Продуктовая анимация с ясной структурой, чистой графикой и точным темпом.",
+      en: "Product motion built around clear structure, clean graphics and precise pacing.",
     },
   },
 ] as const;

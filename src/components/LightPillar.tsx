@@ -62,11 +62,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const height = container.clientHeight;
 
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isLowEndDevice = isMobile || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-
-    let effectiveQuality = quality;
-    if (isLowEndDevice && quality === 'high') effectiveQuality = 'medium';
-    if (isMobile && quality !== 'low') effectiveQuality = 'low';
+    const isResourceConstrained = isMobile || Boolean(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
 
     const qualitySettings = {
       low: { iterations: 24, waveIterations: 1, pixelRatio: 0.5, precision: 'mediump', stepMultiplier: 1.5 },
@@ -80,7 +76,13 @@ const LightPillar: React.FC<LightPillarProps> = ({
       }
     };
 
-    const settings = qualitySettings[effectiveQuality] || qualitySettings.medium;
+    const requestedSettings = qualitySettings[quality] || qualitySettings.medium;
+    const settings = {
+      ...requestedSettings,
+      pixelRatio: isResourceConstrained
+        ? Math.min(requestedSettings.pixelRatio, 1)
+        : requestedSettings.pixelRatio
+    };
 
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -92,7 +94,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
       renderer = new THREE.WebGLRenderer({
         antialias: false,
         alpha: true,
-        powerPreference: effectiveQuality === 'high' ? 'high-performance' : 'low-power',
+        powerPreference: quality === 'high' ? 'high-performance' : 'low-power',
         precision: settings.precision as 'highp' | 'mediump' | 'lowp',
         stencil: false,
         depth: false
@@ -261,7 +263,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
     }
 
     let lastTime = performance.now();
-    const targetFPS = effectiveQuality === 'low' ? 30 : 60;
+    const targetFPS = isResourceConstrained || quality === 'low' ? 30 : 60;
     const frameTime = 1000 / targetFPS;
 
     const animate = (currentTime: number) => {
